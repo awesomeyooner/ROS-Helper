@@ -8,7 +8,7 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
-
+//testing the update
 
 function activate(context) {
 	var path = vscode.workspace.workspaceFolders[0].uri.path;
