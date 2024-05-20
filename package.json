@@ -20,15 +20,15 @@
     "commands": [
       {
         "command": "ros.build",
-        "title": "Build Workspace"
+        "title": "ROS: Build Workspace"
       },
       {
         "command": "ros.source",
-        "title": "Source Workspace"
+        "title": "ROS: Source Workspace"
       },
       {
         "command": "ros.run",
-        "title": "Run Launch"
+        "title": "ROS: Run Launch"
       }
     ]
   },
