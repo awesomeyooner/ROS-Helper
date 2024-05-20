@@ -3,7 +3,7 @@
   "displayName": "ROS Helper",
   "publisher": "PolarRobotics",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -22,12 +22,10 @@
         "command": "ros.build",
         "title": "Build Workspace"
       },
-
       {
         "command": "ros.source",
         "title": "Source Workspace"
       },
-
       {
         "command": "ros.run",
         "title": "Run Launch"
