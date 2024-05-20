@@ -1,0 +1,51 @@
+{
+  "name": "roshelper",
+  "displayName": "ROS Helper",
+  "publisher": "PolarRobotics",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:ros.build",
+    "onCommand:ros.source",
+    "onCommand:ros.run"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ros.build",
+        "title": "Build Workspace"
+      },
+
+      {
+        "command": "ros.source",
+        "title": "Source Workspace"
+      },
+
+      {
+        "command": "ros.run",
+        "title": "Run Launch"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.54.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
