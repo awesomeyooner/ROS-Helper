@@ -9,13 +9,13 @@
     "url": "https://github.com/awesomeyooner/ROS-Helper.git"
   },
   "engines": {
-    "vscode": "^1.54.0"
+    "vscode": "^1.96.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "configuration": {
       "title": "ROS Helper",
