@@ -30,7 +30,7 @@ async function sendLaunchCommand(package_config, launch_config, termName, extens
         config.update(package_config, package, vscode.ConfigurationTarget.Global);
     
     if(launch != null) //redundant null check
-        config.update(package_config, launch, vscode.ConfigurationTarget.Global);
+        config.update(launch_config, launch, vscode.ConfigurationTarget.Global);
 
     command_helper.sendCommandInDedicated(cd_into_ws + and + source_ws + and + ros2_launch + " " + package + " " + launch, termName);
 }
