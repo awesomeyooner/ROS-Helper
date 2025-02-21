@@ -10,25 +10,95 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:ros.build",
-    "onCommand:ros.source",
-    "onCommand:ros.run"
-  ],
+  "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
+
+    "configuration": {
+      "title": "ROS Helper",
+
+      "properties": {
+
+        "roshelper.joystick_pkg": {
+          "type": ["string", "null"],
+          "default": "joystick_driver",
+          "description": "Package for Joystick, used for ROS: Launch Joystick"
+        },
+        "roshelper.joystick_launch": {
+          "type": ["string", "null"],
+          "default": "joystick.launch.py",
+          "description": "Launch file to use for ROS: Launch Joystick"
+        },
+
+        "roshelper.main_pkg": {
+          "type": ["string", "null"],
+          "default": "microros_hardware_interface",
+          "description": "Package for Main Launch, used for ROS: Launch Main"
+        },
+        "roshelper.main_launch": {
+          "type": ["string", "null"],
+          "default": "main.launch.py",
+          "description": "Launch file to use for ROS: Launch Main"
+        },
+
+        "roshelper.alt_pkg": {
+          "type": ["string", "null"],
+          "default": "microros_hardware_interface",
+          "description": "Package for Alternate Launch, used for ROS: Launch Alternate"
+        },
+        "roshelper.alt_launch": {
+          "type": ["string", "null"],
+          "default": "main.launch.py",
+          "description": "Launch file to use for ROS: Launch Alternate"
+        }
+
+
+      }
+    },
+
     "commands": [
       {
-        "command": "ros.build",
-        "title": "ROS: Build Workspace"
+        "command": "ros.build_dedicated",
+        "title": "ROS: Build Workspace in Dedicated Terminal"
       },
       {
-        "command": "ros.source",
-        "title": "ROS: Source Workspace"
+        "command": "ros.build_dedicated_ps",
+        "title": "ROS: Build Specified Packages in Dedicated Terminal"
       },
       {
-        "command": "ros.run",
-        "title": "ROS: Run Launch"
+        "command": "ros.source_dedicated",
+        "title": "ROS: Source Workspace in Dedicated Terminal"
+      },
+
+      {
+        "command": "ros.build_current",
+        "title": "ROS: Build Workspace in Current Terminal"
+      },
+      {
+        "command": "ros.build_current_ps",
+        "title": "ROS: Build Specified Packages in Current Terminal"
+      },
+      {
+        "command": "ros.source_current",
+        "title": "ROS: Source Workspace in Current Terminal"
+      },
+
+      {
+        "command": "ros.cd_project_root",
+        "title": "ROS: Go to Project Root"
+      },
+
+      {
+        "command": "ros.launch_joystick",
+        "title": "ROS: Launch Joystick"
+      },
+      {
+        "command": "ros.launch_main",
+        "title": "ROS: Launch Main"
+      },
+      {
+        "command": "ros.launch_alternate",
+        "title": "ROS: Launch Alternate"
       }
     ]
   },
