@@ -3,7 +3,7 @@
   "displayName": "ROS Helper",
   "publisher": "PolarRobotics",
   "description": "",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -13,49 +13,59 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-
     "configuration": {
       "title": "ROS Helper",
-
       "properties": {
-
         "roshelper.joystick_pkg": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "joystick_driver",
           "description": "Package for Joystick, used for ROS: Launch Joystick"
         },
         "roshelper.joystick_launch": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "joystick.launch.py",
           "description": "Launch file to use for ROS: Launch Joystick"
         },
-
         "roshelper.main_pkg": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "microros_hardware_interface",
           "description": "Package for Main Launch, used for ROS: Launch Main"
         },
         "roshelper.main_launch": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "main.launch.py",
           "description": "Launch file to use for ROS: Launch Main"
         },
-
         "roshelper.alt_pkg": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "microros_hardware_interface",
           "description": "Package for Alternate Launch, used for ROS: Launch Alternate"
         },
         "roshelper.alt_launch": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "main.launch.py",
           "description": "Launch file to use for ROS: Launch Alternate"
         }
-
-
       }
     },
-
     "commands": [
       {
         "command": "ros.build_dedicated",
@@ -69,7 +79,6 @@
         "command": "ros.source_dedicated",
         "title": "ROS: Source Workspace in Dedicated Terminal"
       },
-
       {
         "command": "ros.build_current",
         "title": "ROS: Build Workspace in Current Terminal"
@@ -82,12 +91,10 @@
         "command": "ros.source_current",
         "title": "ROS: Source Workspace in Current Terminal"
       },
-
       {
         "command": "ros.cd_project_root",
         "title": "ROS: Go to Project Root"
       },
-
       {
         "command": "ros.launch_joystick",
         "title": "ROS: Launch Joystick"
