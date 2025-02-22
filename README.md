@@ -1,15 +1,44 @@
-# ros README
+# ROS Helper
 
-Hello! This is an extension made to save typing commands like sourcing or building!
-When using this extension, please make sure to open the workspace folder you are planning to work in as your main folder.
-Example, /home/dev/Documents/projects/my_workspace, please open "my_workspace".
+## Intro
+Hello! This is an extension made to save typing commands like sourcing, building, and launching! :D
 
-Here are the commands available (so far):
+> **NOTE**  
+ When using this extension, please make sure to open the workspace folder you are planning to work in as your main folder. Example: `/ros2_ws` 
 
-Build Workspace - this builds the active workspace with "colcon build --symlink-install"
+## Commands
 
-Source Workspace - this sources the setup files for your workspace with ". install/setup.bash"
+> **NOTE**
+    These are just the commands I've implemented so far, if you'd like to see some added please [reach out!](#contact)
 
-Run - this opens a launch file for the specified package. This works for yaml files only, please be sure to name your launch file "launch.yaml"
+> **PREFACE** Pretty much all commands `cd` into your workspace directory (the one that you opened). So if I opened `/ros2_ws`, every command will cd into `/ros2/ws`. Also, **Dedicated Terminal** refers to a terminal with the name `build`. If it doesn't exist yet, it will create that terminal, and if it does exist then the extension will use that terminal. **Current Terminal** will run the commands in the active terminal.
 
-There will be more to come!
+- **Go to Project Root**
+    this just `cd`'s into the folder you opened
+
+- **Build Workspace in Dedicated Terminal** 
+    this runs `colcon build --symlink-install` in its own terminal
+
+- **Build Specified Packages in Dedicated Terminal** 
+    this will prompt you for packages and then runs `colcon build --symlink-install --packages-select` in its own terminal with what you typed. If you want to do multiple packages, enter `my_package_1 my_package_2`
+
+- **Source Workspace in Dedicated Terminal** 
+    this runs `. install/setup.bash` in its own terminal
+
+- **Build Workspace in Current Terminal** 
+    this runs `colcon build --symlink-install` in the current terminal
+
+- **Build Specified Packages in Dedicated Terminal** 
+    this will prompt you for packages and then runs `colcon build --symlink-install --packages-select` in the current terminal with what you typed. If you want to do multiple packages, enter `my_package_1 my_package_2`
+
+- **Source Workspace in Current Terminal** 
+    this runs `. install/setup.bash` in the current terminal
+
+- **Launch Main, Launch Alternate, Launch Joystick** 
+    All three of these are pretty much the same just with different names. It run `ros2 launch` and ask you for the package and executable to use all in their own terminals. It will also which packages you specify in the settings so that you can quickly launch packages without having to type out the whole command. 
+
+## Contact
+
+- **Issues** [Write an issue!](https://github.com/awesomeyooner/ROS-Helper/issues) 
+
+- **Email** `awesomeyooner@gmail.com`
