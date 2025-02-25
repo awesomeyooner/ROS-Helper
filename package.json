@@ -3,7 +3,7 @@
   "displayName": "ROS Helper",
   "publisher": "PolarRobotics",
   "description": "",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/awesomeyooner/ROS-Helper.git"
@@ -111,7 +111,6 @@
         "command": "ros.launch_alternate",
         "title": "ROS: Launch Alternate"
       },
-
       {
         "command": "ros.test_dedicated_ps",
         "title": "ROS: Test Specified Packages in Dedicated Terminal"
@@ -120,7 +119,6 @@
         "command": "ros.test_dedicated_all",
         "title": "ROS: Test All Packages in Dedicated Terminal"
       },
-
       {
         "command": "ros.test_current_ps",
         "title": "ROS: Test Specified Packages in Current Terminal"
@@ -129,7 +127,6 @@
         "command": "ros.test_current_all",
         "title": "ROS: Test All Packages in Current Terminal"
       },
-
       {
         "command": "ros.test_results_all",
         "title": "ROS: Show All Test Results"
