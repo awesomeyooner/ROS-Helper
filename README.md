@@ -37,6 +37,21 @@ Hello! This is an extension made to save typing commands like sourcing, building
 - **Launch Main, Launch Alternate, Launch Joystick** 
     All three of these are pretty much the same just with different names. It run `ros2 launch` and ask you for the package and executable to use all in their own terminals. It will also which packages you specify in the settings so that you can quickly launch packages without having to type out the whole command. 
 
+- **Test Specified Packages in Dedicated Terminal** 
+    Runs `colcon test --packages select` with the prompted packages in it's own terminal
+
+- **Test All in Dedicated Terminal** 
+    Runs `colcon test` in it's own terminal
+
+- **Test Specified Packages in Current Terminal** 
+    Runs `colcon test --packages select` with the prompted packages in the active terminal
+
+- **Test All in Current Terminal** 
+    Runs `colcon test` in the active terminal
+
+- **Show All Test Results** 
+    Runs `colcon test-results --all`
+
 ## Contact
 
 - **Issues** [Write an issue!](https://github.com/awesomeyooner/ROS-Helper/issues) 
