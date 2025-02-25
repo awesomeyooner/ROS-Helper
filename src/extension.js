@@ -22,7 +22,9 @@ function activate(context) {
 	var source_ws = ". install/setup.bash";
 	var build_ws = "colcon build --symlink-install";
 	var packages_select = "--packages-select";
+	var colcon_test = "colcon test"
 	
+	//Base Dedicated
 	let build_dedicated = vscode.commands.registerCommand('ros.build_dedicated', async function () {
 		await command_helper.sendCommandInDedicated(cd_into_ws + and + build_ws);
 	});
@@ -36,6 +38,7 @@ function activate(context) {
 		await command_helper.sendCommandInDedicated(cd_into_ws + and + source_ws);
 	});
 
+	//Base Current
 	let build_current = vscode.commands.registerCommand('ros.build_current', async function () {
 		await command_helper.sendCommandInActive(cd_into_ws + and + build_ws);
 	});
@@ -49,10 +52,12 @@ function activate(context) {
 		await command_helper.sendCommandInActive(cd_into_ws + and + source_ws);
 	});
 
+	//Helper
 	let cd_project_root = vscode.commands.registerCommand('ros.cd_project_root', async function(){
 		await command_helper.sendCommandInActive(cd_into_ws);
 	});
 
+	//Launch Suite
 	let launch_joystick = vscode.commands.registerCommand('ros.launch_joystick', async function(){
 		await ros_command_helper.sendLaunchCommand('joystick_pkg', 'joystick_launch', "joystick");
 	});
@@ -64,6 +69,30 @@ function activate(context) {
 	let launch_alternate = vscode.commands.registerCommand('ros.launch_alternate', async function(){
 		await ros_command_helper.sendLaunchCommand('alt_pkg', 'alt_launch', "alternative");
 	});
+
+	//Testing Suite
+	let test_dedicated_ps = vscode.commands.registerCommand('ros.test_dedicated_ps', async function () {
+		const response = await vscode.window.showInputBox({placeHolder: "Type Package(s)"});
+		await command_helper.sendCommandInDedicated(cd_into_ws + and + colcon_test + " " + packages_select + " " + response, "testing");
+	});
+
+	let test_dedicated_all = vscode.commands.registerCommand('ros.test_dedicated_all', async function () {
+		await command_helper.sendCommandInActive(cd_into_ws + and + colcon_test, "testing");
+	});
+
+	let test_current_ps = vscode.commands.registerCommand('ros.test_current_ps', async function () {
+		const response = await vscode.window.showInputBox({placeHolder: "Type Package(s)"});
+		await command_helper.sendCommandInActive(cd_into_ws + and + colcon_test + " " + packages_select + " " + response);
+	});
+
+	let test_current_all = vscode.commands.registerCommand('ros.test_current_all', async function () {
+		await command_helper.sendCommandInActive(cd_into_ws + and + colcon_test);
+	});
+
+	let show_test_results = vscode.commands.registerCommand('ros.test_results_all', async function () {
+		await command_helper.sendCommandInActive(cd_into_ws + and + "colcon test-result --all");
+	});
+
 
 	context.subscriptions.push(
 
@@ -81,7 +110,14 @@ function activate(context) {
 		cd_project_root, 
 		launch_joystick,
 		launch_main,
-		launch_alternate
+		launch_alternate,
+
+		//testing
+		test_dedicated_all,
+		test_dedicated_ps,
+		test_current_all,
+		test_current_ps,
+		show_test_results
 	);
 }
 

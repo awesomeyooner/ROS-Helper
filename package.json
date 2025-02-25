@@ -110,6 +110,29 @@
       {
         "command": "ros.launch_alternate",
         "title": "ROS: Launch Alternate"
+      },
+
+      {
+        "command": "ros.test_dedicated_ps",
+        "title": "ROS: Test Specified Packages in Dedicated Terminal"
+      },
+      {
+        "command": "ros.test_dedicated_all",
+        "title": "ROS: Test All Packages in Dedicated Terminal"
+      },
+
+      {
+        "command": "ros.test_current_ps",
+        "title": "ROS: Test Specified Packages in Current Terminal"
+      },
+      {
+        "command": "ros.test_current_all",
+        "title": "ROS: Test All Packages in Current Terminal"
+      },
+
+      {
+        "command": "ros.test_results_all",
+        "title": "ROS: Show All Test Results"
       }
     ]
   },
