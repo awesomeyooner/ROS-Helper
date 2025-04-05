@@ -22,7 +22,7 @@ function activate(context) {
 	var source_ws = ". install/setup.bash";
 	var build_ws = "colcon build --symlink-install";
 	var packages_select = "--packages-select";
-	var colcon_test = "colcon test"
+	var colcon_test = "colcon test --event-handlers console_direct+"
 	
 	//Base Dedicated
 	let build_dedicated = vscode.commands.registerCommand('ros.build_dedicated', async function () {
