@@ -3,7 +3,7 @@
   "displayName": "ROS-Helper",
   "publisher": "PolarRobotics",
   "description": "ROS CLI Shortcuts",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/awesomeyooner/ROS-Helper.git"
