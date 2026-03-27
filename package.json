@@ -17,10 +17,9 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
-    "configuration":[
+    "configuration": [
       {
         "title": "ROS Helper",
-
         "properties": {
           "roshelper.joystick_pkg": {
             "type": [
@@ -156,16 +155,20 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.110.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.56.1",
-    "eslint": "^9.39.3",
-    "typescript": "^5.9.3",
-    "ts-loader": "^9.5.4",
-    "webpack": "^5.105.3",
-    "webpack-cli": "^6.0.1",
+    "@types/vscode": "^1.110.0",
     "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^10.1.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "diff": "^8.0.4",
+    "minimatch": "^10.2.4"
   }
 }
