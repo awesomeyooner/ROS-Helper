@@ -1,76 +1,82 @@
 {
-  "name": "roshelper",
-  "displayName": "ROS Helper",
+  "name": "ros-helper",
+  "displayName": "ROS-Helper",
   "publisher": "PolarRobotics",
-  "description": "",
-  "version": "0.11.0",
+  "description": "ROS CLI Shortcuts",
+  "version": "0.14.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/awesomeyooner/ROS-Helper.git"
   },
   "engines": {
-    "vscode": "^1.96.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [],
-  "main": "./src/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
-    "configuration": {
-      "title": "ROS Helper",
-      "properties": {
-        "roshelper.joystick_pkg": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "joystick_driver",
-          "description": "Package for Joystick, used for ROS: Launch Joystick"
-        },
-        "roshelper.joystick_launch": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "joystick.launch.py",
-          "description": "Launch file to use for ROS: Launch Joystick"
-        },
-        "roshelper.main_pkg": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "microros_hardware_interface",
-          "description": "Package for Main Launch, used for ROS: Launch Main"
-        },
-        "roshelper.main_launch": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "main.launch.py",
-          "description": "Launch file to use for ROS: Launch Main"
-        },
-        "roshelper.alt_pkg": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "microros_hardware_interface",
-          "description": "Package for Alternate Launch, used for ROS: Launch Alternate"
-        },
-        "roshelper.alt_launch": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": "main.launch.py",
-          "description": "Launch file to use for ROS: Launch Alternate"
+    "configuration": [
+      {
+        "title": "ROS Helper",
+        "properties": {
+          "roshelper.joystick_pkg": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "joystick_driver",
+            "description": "Package for Joystick, used for ROS: Launch Joystick"
+          },
+          "roshelper.joystick_launch": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "joystick.launch.py",
+            "description": "Launch file to use for ROS: Launch Joystick"
+          },
+          "roshelper.main_pkg": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "microros_hardware_interface",
+            "description": "Package for Main Launch, used for ROS: Launch Main"
+          },
+          "roshelper.main_launch": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "main.launch.py",
+            "description": "Launch file to use for ROS: Launch Main"
+          },
+          "roshelper.alt_pkg": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "microros_hardware_interface",
+            "description": "Package for Alternate Launch, used for ROS: Launch Alternate"
+          },
+          "roshelper.alt_launch": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": "main.launch.py",
+            "description": "Launch file to use for ROS: Launch Alternate"
+          }
         }
       }
-    },
+    ],
     "commands": [
+      {
+        "command": "ros.build_simple",
+        "title": "ROS: Build Workspace"
+      },
       {
         "command": "ros.build_dedicated",
         "title": "ROS: Build Workspace in Dedicated Terminal"
@@ -90,6 +96,10 @@
       {
         "command": "ros.build_current_ps",
         "title": "ROS: Build Specified Packages in Current Terminal"
+      },
+      {
+        "command": "ros.source_simple",
+        "title": "ROS: Source Workspace"
       },
       {
         "command": "ros.source_current",
@@ -134,17 +144,31 @@
     ]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.54.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9"
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^10.1.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "diff": "^8.0.4",
+    "minimatch": "^10.2.4"
   }
 }
