@@ -110,6 +110,14 @@
         "title": "ROS: Go to Project Root"
       },
       {
+        "command": "ros.clean_current",
+        "title": "ROS: Clean Workspace in Current Terminal"
+      },
+      {
+        "command": "ros.clean_dedicated",
+        "title": "ROS: Clean Workspace in Dedicated Terminal"
+      },
+      {
         "command": "ros.launch_joystick",
         "title": "ROS: Launch Joystick"
       },

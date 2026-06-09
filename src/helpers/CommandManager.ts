@@ -3,6 +3,7 @@ import { TerminalManager, DEFAULT_TERMINAL_NAME } from "./TerminalManager";
 import { COMMAND_PREFIX } from "../extension";
 import { ConfigurationManager } from "./ConfigurationManager";
 import { Helper } from "./Helper";
+import { clean_workspace } from "./Commands";
 // import * as Commands from "./Commands";
 
 /**
@@ -101,6 +102,10 @@ export class CommandManager
             await TerminalManager.sendCommandInDedicatedTerminal(cd_into_ws + and + source_ws);
         });
 
+        let clean_dedicated = vscode.commands.registerCommand(COMMAND_PREFIX + '.clean_dedicated', async function(){
+            await TerminalManager.sendCommandInDedicatedTerminal(cd_into_ws + and + clean_workspace);
+        });
+
         //Base Current
         let build_current = vscode.commands.registerCommand(COMMAND_PREFIX + '.build_current', async function () {
             await TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + build_ws);
@@ -113,6 +118,10 @@ export class CommandManager
 
         let source_current = vscode.commands.registerCommand(COMMAND_PREFIX + '.source_current', async function(){
             await TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + source_ws);
+        });
+
+        let clean_current = vscode.commands.registerCommand(COMMAND_PREFIX + '.clean_current', async function(){
+            await TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + clean_workspace);
         });
 
         //Helper
@@ -167,11 +176,13 @@ export class CommandManager
             build_dedicated, 
             build_dedicated_ps,
             source_dedicated, 
+            clean_dedicated,
 
             //active terminal
             build_current, 
             build_current_ps,
             source_current, 
+            clean_current,
 
             ///helpers
             cd_project_root, 
