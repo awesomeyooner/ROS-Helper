@@ -71,6 +71,7 @@ const TerminalManager_1 = __webpack_require__(3);
 const extension_1 = __webpack_require__(0);
 const ConfigurationManager_1 = __webpack_require__(4);
 const Helper_1 = __webpack_require__(5);
+const Commands_1 = __webpack_require__(6);
 // import * as Commands from "./Commands";
 /**
  * Helper class for sending commands to the terminal
@@ -135,6 +136,9 @@ class CommandManager {
         let source_dedicated = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.source_dedicated', async function () {
             await TerminalManager_1.TerminalManager.sendCommandInDedicatedTerminal(cd_into_ws + and + source_ws);
         });
+        let clean_dedicated = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.clean_dedicated', async function () {
+            await TerminalManager_1.TerminalManager.sendCommandInDedicatedTerminal(cd_into_ws + and + Commands_1.clean_workspace);
+        });
         //Base Current
         let build_current = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.build_current', async function () {
             await TerminalManager_1.TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + build_ws);
@@ -145,6 +149,9 @@ class CommandManager {
         });
         let source_current = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.source_current', async function () {
             await TerminalManager_1.TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + source_ws);
+        });
+        let clean_current = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.clean_current', async function () {
+            await TerminalManager_1.TerminalManager.sendCommandInActiveTerminal(cd_into_ws + and + Commands_1.clean_workspace);
         });
         //Helper
         let cd_project_root = vscode.commands.registerCommand(extension_1.COMMAND_PREFIX + '.cd_project_root', async function () {
@@ -183,9 +190,9 @@ class CommandManager {
         });
         commands.push(build_simple, source_simple, 
         //dedicated terminal
-        build_dedicated, build_dedicated_ps, source_dedicated, 
+        build_dedicated, build_dedicated_ps, source_dedicated, clean_dedicated, 
         //active terminal
-        build_current, build_current_ps, source_current, 
+        build_current, build_current_ps, source_current, clean_current, 
         ///helpers
         cd_project_root, launch_joystick, launch_main, launch_alternate, 
         //testing
@@ -472,6 +479,21 @@ class Helper {
     } // end of "isStringValid(string)"
 } // class CommandManager
 exports.Helper = Helper;
+
+
+/***/ }),
+/* 6 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.clean_workspace = exports.colcon_test = exports.packages_select = exports.build_ws = exports.source_ws = exports.and = void 0;
+exports.and = " ; ";
+exports.source_ws = ". install/setup.bash";
+exports.build_ws = "colcon build --symlink-install";
+exports.packages_select = "--packages-select";
+exports.colcon_test = "colcon test --event-handlers console_direct+";
+exports.clean_workspace = "rm -rf build install log";
 
 
 /***/ })
