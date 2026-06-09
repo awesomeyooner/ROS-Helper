@@ -1,6 +1,6 @@
 {
   "name": "ros-helper",
-  "displayName": "ROS-Helper",
+  "displayName": "ROS Helper",
   "publisher": "PolarRobotics",
   "description": "ROS CLI Shortcuts",
   "version": "0.16.0",
