@@ -90,20 +90,13 @@ class CommandManager {
         const ros2_launch = "ros2 launch";
         const packages_select = "--packages-select";
         const colcon_test = "colcon test --event-handlers console_direct+";
-        const defaultPackage = ConfigurationManager_1.ConfigurationManager.getEntry(packageConfigEntry);
-        const defaultLaunch = ConfigurationManager_1.ConfigurationManager.getEntry(launchConfigEntry);
-        const usersPackage = await ConfigurationManager_1.ConfigurationManager.promptUser("Type Package", defaultPackage);
-        const usersLaunch = await ConfigurationManager_1.ConfigurationManager.promptUser("Type Launch File", defaultLaunch);
-        if (Helper_1.Helper.isStringValid(usersPackage) || Helper_1.Helper.isStringValid(usersLaunch)) {
+        const usersPackage = await ConfigurationManager_1.ConfigurationManager.promptAndUpdateEntry("Type Package", packageConfigEntry);
+        const usersLaunch = await ConfigurationManager_1.ConfigurationManager.promptAndUpdateEntry("Type Launch File", launchConfigEntry);
+        // If both strings aren't valid, then don't do anything
+        if (!Helper_1.Helper.isStringValid(usersPackage) || !Helper_1.Helper.isStringValid(usersLaunch)) {
             return;
         }
-        if (Helper_1.Helper.isStringValid(usersPackage)) {
-            ConfigurationManager_1.ConfigurationManager.updateEntry(packageConfigEntry, usersPackage);
-        }
-        if (Helper_1.Helper.isStringValid(usersLaunch)) {
-            ConfigurationManager_1.ConfigurationManager.updateEntry(launchConfigEntry, usersLaunch);
-        }
-        TerminalManager_1.TerminalManager.sendCommandInTerminal(terminal, cd_into_ws + and + source_ws +
+        TerminalManager_1.TerminalManager.sendCommandInTerminal(terminal, cd_into_ws + and + source_ws + and +
             ros2_launch + " " + usersPackage + " " + usersLaunch, "Running ROS Launch Script...", "Running ROS Launch Script...");
     }
     static getCommands() {
@@ -453,6 +446,21 @@ class ConfigurationManager {
         }
         return await vscode.window.showInputBox(options);
     } // end of "promptUser(string, string=)"
+    /**
+     * Prompts the user for an input and updates a given Configuration Entry if the input is valid
+     * @param placeholder `string` The text to display when nothings typed in
+     * @param entryName `string` The name of the entry to update
+     * @returns `Promise<string | undefined>` The user's input
+     */
+    static async promptAndUpdateEntry(placeholder, entryName) {
+        var entryValue = this.getEntry(entryName);
+        var input = await this.promptUser(placeholder, entryValue);
+        if (!Helper_1.Helper.isStringValid(input)) {
+            return undefined;
+        }
+        this.updateEntry(entryName, input);
+        return input;
+    } // end of "promptAndUpdateEntry(string, string)"
 } // class ConfigurationManager
 exports.ConfigurationManager = ConfigurationManager;
 

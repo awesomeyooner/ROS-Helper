@@ -81,6 +81,29 @@ export class ConfigurationManager
         return await vscode.window.showInputBox(options);
 
     } // end of "promptUser(string, string=)"
+
+
+    /**
+     * Prompts the user for an input and updates a given Configuration Entry if the input is valid
+     * @param placeholder `string` The text to display when nothings typed in
+     * @param entryName `string` The name of the entry to update
+     * @returns `Promise<string | undefined>` The user's input
+     */
+    public static async promptAndUpdateEntry(placeholder : string, entryName : string) : Promise<string | undefined>
+    {
+        var entryValue = this.getEntry(entryName);
+        var input = await this.promptUser(placeholder, entryValue);
+
+        if(!Helper.isStringValid(input))
+        {
+            return undefined;
+        }
+
+        this.updateEntry(entryName, input);
+
+        return input;
+
+    } // end of "promptAndUpdateEntry(string, string)"
     
     
 } // class ConfigurationManager

@@ -31,29 +31,17 @@ export class CommandManager
         const packages_select : string = "--packages-select";
         const colcon_test : string = "colcon test --event-handlers console_direct+";
 
-        const defaultPackage = ConfigurationManager.getEntry(packageConfigEntry);
-        const defaultLaunch = ConfigurationManager.getEntry(launchConfigEntry);
+        const usersPackage = await ConfigurationManager.promptAndUpdateEntry("Type Package", packageConfigEntry);
+        const usersLaunch = await ConfigurationManager.promptAndUpdateEntry("Type Launch File", launchConfigEntry);
 
-        const usersPackage = await ConfigurationManager.promptUser("Type Package", defaultPackage);
-        const usersLaunch = await ConfigurationManager.promptUser("Type Launch File", defaultLaunch);
-
-        if(Helper.isStringValid(usersPackage) || Helper.isStringValid(usersLaunch))
+        // If both strings aren't valid, then don't do anything
+        if(!Helper.isStringValid(usersPackage) || !Helper.isStringValid(usersLaunch))
         {
             return;
         }
-
-        if(Helper.isStringValid(usersPackage))
-        {
-            ConfigurationManager.updateEntry(packageConfigEntry, usersPackage);
-        }
-
-        if(Helper.isStringValid(usersLaunch))
-        {
-            ConfigurationManager.updateEntry(launchConfigEntry, usersLaunch);
-        }
         
         TerminalManager.sendCommandInTerminal(terminal, 
-            cd_into_ws + and + source_ws + 
+            cd_into_ws + and + source_ws + and + 
             ros2_launch + " " + usersPackage + " " + usersLaunch,
             "Running ROS Launch Script...",
             "Running ROS Launch Script..."
